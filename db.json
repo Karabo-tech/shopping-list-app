@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "id": "c6b1",
+      "email": "karabo@gmail.com",
+      "password": "$2b$10$aC5ZrsmGnyhJSBPVySyoBOY1zqWNBiDUcDaZBe.Et6CuJ3v6xBGwa",
+      "name": "Karabo",
+      "surname": "Shabe",
+      "cellNumber": "0123456789"
+    }
+  ],
+  "shoppingLists": [
+    {
+      "id": "40f4",
+      "userId": "c6b1",
+      "name": "Beans",
+      "quantity": "4",
+      "category": "black",
+      "notes": "They prevent the development of diseases",
+      "image": "https://www.realsimple.com/thmb/HN_UFnuD1MJ086vsXB0ULF6aaNA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/black-beans-health-benefits-GettyImages-1268890779-ba643ccca3254398acdca809552d66de.jpg",
+      "dateAdded": "2025-08-24T17:16:44.923Z"
+    },
+    {
+      "id": "b17e",
+      "userId": "c6b1",
+      "name": "Rice",
+      "quantity": "1",
+      "category": "Tastic",
+      "notes": "Great Energy Source. Many illnesses are known to be controlled by rice",
+      "image": "https://www.tastic.co.za/-/media/Project/Tiger/Tastic/Tastic/Products/ROTW_Jasmine-updated.jpg?h=594&iar=0&w=419&hash=C4C55746ED79FDFCA6F7091473336778",
+      "dateAdded": "2025-08-24T17:19:23.574Z"
+    }
+  ]
+}
