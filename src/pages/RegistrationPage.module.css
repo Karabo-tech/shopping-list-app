@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 60px);
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
+}
