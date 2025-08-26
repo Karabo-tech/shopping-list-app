@@ -1,58 +1,780 @@
 .card {
-  background: white;
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #4CAF50, #8BC34A, #CDDC39);
+  border-radius: 16px 16px 0 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card:hover {
-  transform: scale(1.02);
+  transform: translateY(-4px) scale(1.02);
   cursor: pointer;
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.12),
+    0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: rgba(76, 175, 80, 0.3);
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card h3 {
+  margin: 0 0 1rem 0;
+  color: #2c3e50;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.card h3::before {
+  content: '🛍️';
+  font-size: 1.25rem;
+  opacity: 0.8;
+}
+
+.card p {
+  margin: 0.75rem 0;
+  color: #6c757d;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.card p::before {
+  position: absolute;
+  left: 0;
+  top: 0.1rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.card p:has-text("Quantity")::before {
+  content: '📦';
+}
+
+.card p:has-text("Category")::before {
+  content: '🏷️';
+}
+
+.card p:has-text("Notes")::before {
+  content: '📝';
+}
+
+.card p:has-text("Date Added")::before {
+  content: '📅';
+}
+
+/* Alternative approach using nth-child for icons */
+.card p:nth-of-type(1)::before {
+  content: '📦';
+}
+
+.card p:nth-of-type(2)::before {
+  content: '🏷️';
+}
+
+.card p:nth-of-type(3):not(:last-of-type)::before {
+  content: '📝';
+}
+
+.card p:last-of-type::before {
+  content: '📅';
 }
 
 .image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 4px;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  border: 2px solid #e9ecef;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-color: #4CAF50;
 }
 
 .actions {
   display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .button {
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.25rem;
   border: none;
-  border-radius: 4px;
-  background: #007bff;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
   color: white;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 2px 8px rgba(52, 152, 219, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  min-width: 80px;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
 }
 
 .button:hover {
-  background: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 
+    0 4px 12px rgba(52, 152, 219, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
+.button:hover::before {
+  left: 100%;
+}
+
+.button:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 1px 4px rgba(52, 152, 219, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Edit button styling */
+.button:first-child {
+  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+  box-shadow: 
+    0 2px 8px rgba(243, 156, 18, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.button:first-child::after {
+  content: '✏️';
+  margin-left: 0.5rem;
+}
+
+.button:first-child:hover {
+  box-shadow: 
+    0 4px 12px rgba(243, 156, 18, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Delete button styling */
 .delete {
-  background: #dc3545;
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  box-shadow: 
+    0 2px 8px rgba(231, 76, 60, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.delete::after {
+  content: '🗑️';
+  margin-left: 0.5rem;
 }
 
 .delete:hover {
-  background: #c82333;
+  background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+  box-shadow: 
+    0 4px 12px rgba(231, 76, 60, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
-@media (max-width: 480px) {
-  .card {
-    padding: 0.75rem;
-  }
+/* Share button styling */
+.button:last-child {
+  background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+  box-shadow: 
+    0 2px 8px rgba(39, 174, 96, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+}
 
+.button:last-child::after {
+  content: '📤';
+  margin-left: 0.5rem;
+}
+
+.button:last-child:hover {
+  box-shadow: 
+    0 4px 12px rgba(39, 174, 96, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Category-based color coding */
+.card[data-category="groceries"] {
+  border-left: 4px solid #4CAF50;
+}
+
+.card[data-category="electronics"] {
+  border-left: 4px solid #2196F3;
+}
+
+.card[data-category="clothing"] {
+  border-left: 4px solid #E91E63;
+}
+
+.card[data-category="home"] {
+  border-left: 4px solid #FF9800;
+}
+
+.card[data-category="books"] {
+  border-left: 4px solid #9C27B0;
+}
+
+.card[data-category="health"] {
+  border-left: 4px solid #00BCD4;
+}
+
+/* Priority indicators */
+.card[data-priority="high"]::after {
+  content: '🔥';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.25rem;
+  opacity: 0.8;
+}
+
+.card[data-priority="medium"]::after {
+  content: '⚡';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.25rem;
+  opacity: 0.8;
+}
+
+.card[data-priority="low"]::after {
+  content: '🕐';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.25rem;
+  opacity: 0.6;
+}
+
+/* Large Desktop - 1200px+ */
+@media (min-width: 1200px) {
+  .card {
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 20px;
+  }
+  
+  .card h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+  }
+  
+  .card h3::before {
+    font-size: 1.5rem;
+  }
+  
+  .card p {
+    font-size: 1.05rem;
+    margin: 1rem 0;
+    padding-left: 2rem;
+  }
+  
+  .card p::before {
+    font-size: 1.1rem;
+    left: 0.25rem;
+  }
+  
+  .image {
+    height: 280px;
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .actions {
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+  }
+  
   .button {
-    padding: 0.5rem;
+    padding: 1rem 1.75rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    min-width: 120px;
+  }
+}
+
+/* Desktop - 1024px */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .card {
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    border-radius: 18px;
+  }
+  
+  .card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.25rem;
+    gap: 0.875rem;
+  }
+  
+  .card h3::before {
+    font-size: 1.35rem;
+  }
+  
+  .card p {
+    font-size: 1rem;
+    margin: 0.875rem 0;
+    padding-left: 1.75rem;
+  }
+  
+  .card p::before {
+    font-size: 1rem;
+    left: 0.2rem;
+  }
+  
+  .image {
+    height: 240px;
+    border-radius: 14px;
+    margin-bottom: 1.25rem;
+  }
+  
+  .actions {
+    gap: 0.875rem;
+    margin-top: 1.75rem;
+    padding-top: 1.25rem;
+  }
+  
+  .button {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+    border-radius: 9px;
+    min-width: 100px;
+  }
+}
+
+/* Tablet - 768px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .card {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 16px;
+  }
+  
+  .card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    gap: 0.75rem;
+  }
+  
+  .card h3::before {
+    font-size: 1.25rem;
+  }
+  
+  .card p {
+    font-size: 0.95rem;
+    margin: 0.75rem 0;
+    padding-left: 1.5rem;
+  }
+  
+  .card p::before {
+    font-size: 0.9rem;
+    left: 0.15rem;
+  }
+  
+  .image {
+    height: 200px;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+  
+  .actions {
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+  }
+  
+  .button {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    min-width: 80px;
+    flex: 1;
+  }
+}
+
+/* Mobile Large - 480px */
+@media (min-width: 480px) and (max-width: 767px) {
+  .card {
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-radius: 14px;
+  }
+  
+  .card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.875rem;
+    gap: 0.6rem;
+  }
+  
+  .card h3::before {
+    font-size: 1.1rem;
+  }
+  
+  .card p {
+    font-size: 0.9rem;
+    margin: 0.6rem 0;
+    padding-left: 1.25rem;
+  }
+  
+  .card p::before {
+    font-size: 0.85rem;
+    left: 0.1rem;
+  }
+  
+  .image {
+    height: 160px;
+    border-radius: 10px;
+    margin-bottom: 0.875rem;
+  }
+  
+  .actions {
+    gap: 0.6rem;
+    margin-top: 1.25rem;
+    padding-top: 0.875rem;
+    flex-wrap: wrap;
+  }
+  
+  .button {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    border-radius: 7px;
+    min-width: 70px;
+    flex: 1;
+    min-width: calc(50% - 0.3rem);
+  }
+  
+  .button:last-child {
+    flex: 1 1 100%;
+    margin-top: 0.3rem;
+  }
+}
+
+/* Mobile Medium - 320px to 479px */
+@media (min-width: 320px) and (max-width: 479px) {
+  .card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+  }
+  
+  .card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    gap: 0.5rem;
+  }
+  
+  .card h3::before {
+    font-size: 1rem;
+  }
+  
+  .card p {
+    font-size: 0.85rem;
+    margin: 0.5rem 0;
+    padding-left: 1.125rem;
+    line-height: 1.4;
+  }
+  
+  .card p::before {
+    font-size: 0.8rem;
+    left: 0.05rem;
+    top: 0.05rem;
+  }
+  
+  .image {
+    height: 140px;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+  }
+  
+  .actions {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+  }
+  
+  .button {
+    width: 100%;
+    min-width: auto;
+    padding: 0.75rem;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    flex: none;
+  }
+}
+
+/* Extra Small Mobile - 320px and below */
+@media (max-width: 319px) {
+  .card {
+    padding: 0.875rem;
+    margin-bottom: 0.875rem;
+    border-radius: 8px;
+  }
+  
+  .card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+    gap: 0.4rem;
+  }
+  
+  .card h3::before {
     font-size: 0.9rem;
   }
+  
+  .card p {
+    font-size: 0.8rem;
+    margin: 0.4rem 0;
+    padding-left: 1rem;
+    line-height: 1.3;
+  }
+  
+  .card p::before {
+    font-size: 0.7rem;
+    left: 0;
+    top: 0;
+  }
+  
+  .image {
+    height: 120px;
+    border-radius: 6px;
+    margin-bottom: 0.6rem;
+  }
+  
+  .actions {
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.875rem;
+    padding-top: 0.6rem;
+  }
+  
+  .button {
+    width: 100%;
+    min-width: auto;
+    padding: 0.65rem;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    flex: none;
+    letter-spacing: 0.2px;
+  }
+  
+  .button::after {
+    margin-left: 0.3rem;
+  }
+}
+
+/* Landscape orientation adjustments for mobile */
+@media (max-height: 500px) and (orientation: landscape) and (max-width: 767px) {
+  .card {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .image {
+    height: 80px;
+    width: 80px;
+    flex-shrink: 0;
+    margin-bottom: 0;
+    object-fit: cover;
+  }
+  
+  .card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .card p {
+    font-size: 0.75rem;
+    margin: 0.2rem 0;
+    padding-left: 0.75rem;
+  }
+  
+  .actions {
+    flex-direction: row;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .button {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.7rem;
+    min-width: auto;
+    flex: 1;
+  }
+}
+
+/* Grid layout for larger screens */
+@media (min-width: 1024px) {
+  .cardGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .card {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .cardGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 0.75rem;
+  }
+  
+  .card {
+    margin-bottom: 0;
+  }
+}
+
+/* Print styles */
+@media print {
+  .card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+  
+  .card::before {
+    display: none;
+  }
+  
+  .actions {
+    display: none;
+  }
+  
+  .image {
+    height: auto;
+    max-height: 150px;
+  }
+}
+
+/* Animation for new cards */
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.card.new {
+  animation: slideInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Completed/checked state */
+.card.completed {
+  opacity: 0.7;
+  background: linear-gradient(145deg, #f1f3f4 0%, #e8eaed 100%);
+}
+
+.card.completed h3 {
+  text-decoration: line-through;
+  color: #6c757d;
+}
+
+.card.completed::before {
+  background: linear-gradient(90deg, #6c757d, #495057);
+  transform: scaleX(1);
+}
+
+/* Loading state */
+.card.loading {
+  pointer-events: none;
+  position: relative;
+}
+
+.card.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+}
+
+.card.loading::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border: 3px solid rgba(76, 175, 80, 0.3);
+  border-top: 3px solid #4CAF50;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 10;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
